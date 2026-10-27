@@ -10,12 +10,15 @@ class Task(models.Model):
         #   Stored value -> human label:  TODO -> "To do", IN_PROGRESS -> "In progress", DONE -> "Done"
         # HINT: days/day-01/hints.md#p2  |  Example: days/day-01/example/models.py
         # YOUR CODE HERE - replace the placeholder line below
-        pass
+        TODO = "TODO", "to do"
+        IN_PROGRESS = "IN_PROGRESS", "in progress"
+        DONE = "DONE", "Done"
 
     # `id` is created automatically by Django (BigAutoField) - do not add it yourself.
 
     # TODO [Day 1 · P3]: Add the remaining Task fields.
     #   field        type                                   rules
+    #-------------------------------------------------------------------------------
     #   title        CharField(max_length=200)              required
     #   description  TextField                              optional  -> blank=True
     #   status       CharField(max_length=20)               choices=Status.choices, default=Status.TODO
@@ -25,10 +28,26 @@ class Task(models.Model):
     #   updated_at   DateTimeField                          set on every save   -> auto_now=True
     # HINT: days/day-01/hints.md#p3  |  Example: days/day-01/example/models.py
     # YOUR CODE HERE
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    status = models.CharField(
+        max_length=20,
+        choices=Status.choices,
+        default=Status.TODO
+        )
+    due_date = models.DateField(null=True, blank=True)
+    owner = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="tasks"
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
 
     def __str__(self):
         # TODO [Day 1 · P4]: Return a readable label, e.g. "Buy groceries (To do)".
         #   get_status_display() returns the human label of the status.
         # HINT: days/day-01/hints.md#p4
         # YOUR CODE HERE - replace the placeholder line below
-        return super().__str__()
+        return f"{self.title} {self.get_status_display()}"

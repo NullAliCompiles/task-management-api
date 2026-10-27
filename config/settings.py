@@ -25,6 +25,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
+    "tasks"
     # TODO [Day 1 · P1]: Register Django REST Framework and your `tasks` app.
     #   Both are plain strings in this list: the DRF package name and the app name.
     # HINT: days/day-01/hints.md#p1

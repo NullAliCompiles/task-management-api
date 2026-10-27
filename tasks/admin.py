@@ -8,3 +8,9 @@ from .models import Task
 #   Add filters for status and owner, and a search box on title.
 # HINT: days/day-01/hints.md#p5  |  Example: days/day-01/example/admin.py
 # YOUR CODE HERE
+
+@admin.register(Task)
+class TaskAdmin(admin.ModelAdmin):
+    list_display = ["id", "title", "status", "due_date", "owner", "created_at"]
+    list_filter = ["status", "owner"]
+    search_fields = ["title"]
