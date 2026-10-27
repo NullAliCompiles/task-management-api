@@ -20,3 +20,16 @@ python manage.py runserver
 ```
 
 Open http://127.0.0.1:8000/admin/ and sign in with the superuser you created.
+
+## API (development)
+
+1. Log in through the browsable API: http://127.0.0.1:8000/api-auth/login/
+2. Open http://127.0.0.1:8000/api/tasks/
+
+| Method | Path | Purpose |
+|---|---|---|
+| GET | `/api/tasks/` | List tasks |
+| POST | `/api/tasks/create/` | Create a task (owner is set by the server) |
+| GET | `/api/tasks/{id}/` | Retrieve one task |
+| PUT / PATCH | `/api/tasks/{id}/update/` | Replace / partially update a task |
+| DELETE | `/api/tasks/{id}/delete/` | Delete a task |

@@ -26,11 +26,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
-    "tasks"
-    # TODO [Day 1 · P1]: Register Django REST Framework and your `tasks` app.
-    #   Both are plain strings in this list: the DRF package name and the app name.
-    # HINT: days/day-01/hints.md#p1
-    # YOUR CODE HERE
+    "tasks",
 ]
 
 MIDDLEWARE = [
@@ -97,3 +93,15 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Django REST Framework
+# Day 2: only logged-in users may use the API. You log in through the browsable API
+# (http://127.0.0.1:8000/api-auth/login/) - a session login used as a temporary development bridge.
+# Day 4 replaces this with token authentication.
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+}
